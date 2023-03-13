@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보 수정</title>
 </head>
 <body>
-	<%
-	response.sendRedirect("main.do");
-	%>
+	
 </body>
 </html>
