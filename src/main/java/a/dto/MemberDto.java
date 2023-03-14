@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class MemberDto implements Serializable{
 	
-	private String user_seq;
+	private String user_id;
 	private String username;
 	private String pwd;
 	private String email;
@@ -19,10 +19,10 @@ public class MemberDto implements Serializable{
 		
 	}
 
-	public MemberDto(String user_seq, String username, String pwd, String email, String nickname, String img_path,
+	public MemberDto(String user_id, String username, String pwd, String email, String nickname, String img_path,
 			Date reg_date, Date modify_date, int auth) {
 		super();
-		this.user_seq = user_seq;
+		this.user_id = user_id;
 		this.username = username;
 		this.pwd = pwd;
 		this.email = email;
@@ -33,12 +33,12 @@ public class MemberDto implements Serializable{
 		this.auth = auth;
 	}
 
-	public String getUser_seq() {
-		return user_seq;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUser_seq(String user_seq) {
-		this.user_seq = user_seq;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getUsername() {
@@ -107,7 +107,7 @@ public class MemberDto implements Serializable{
 
 	@Override
 	public String toString() {
-		return "MemberDto [user_seq=" + user_seq + ", username=" + username + ", pwd=" + pwd + ", email=" + email
+		return "MemberDto [user_id=" + user_id + ", username=" + username + ", pwd=" + pwd + ", email=" + email
 				+ ", nickname=" + nickname + ", img_path=" + img_path + ", reg_date=" + reg_date + ", modify_date="
 				+ modify_date + ", auth=" + auth + "]";
 	}
