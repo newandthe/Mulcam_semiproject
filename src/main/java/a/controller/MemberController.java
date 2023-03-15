@@ -52,19 +52,5 @@ public class MemberController {
 	   }
 	  
 	  //세션에 auth값이 2(=admin)인지 확인
-	  
 	 
-		/*
-		 * @RequestMapping(value = "/user/userList.do", method = RequestMethod.GET)
-		 * public String getUserList(Model model) throws Exception{
-		 * logger.info("getUserList()....");
-		 * 
-		 * model.addAttribute("userList", userService.getUserList());
-		 * 
-		 * return "user/userList"; }
-		 */
-		 
-		
-
-	
   }

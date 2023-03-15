@@ -15,6 +15,5 @@ public interface MemberDao {
 	
 	//회원 정보 상세보기
 	MemberDto viewMember(String user_id);
-	
-	 
+
 }

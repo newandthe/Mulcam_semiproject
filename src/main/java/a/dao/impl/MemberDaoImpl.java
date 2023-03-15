@@ -27,9 +27,4 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.viewMember",user_id);
 	}
 
-	
-	/*
-	 * @Override public List<MemberDto> getUserList() { return
-	 * sqlSession.selectList("getUserList"); }
-	 */
 }

@@ -23,9 +23,9 @@ public class HomeController {
 		
 		model.addAttribute("msg", "홈페이지 방문을 환영합니다");
 		
-		return "main"; //main.jsp로 포워딩
+		return "main"; //main.jsp
 	}
-	
+
 	//url mapping
 	//기본, 루트 페이지 -> home메서드 호출
 	@RequestMapping(value="home.do", method = RequestMethod.GET)

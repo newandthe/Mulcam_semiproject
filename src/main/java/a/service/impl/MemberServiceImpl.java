@@ -15,7 +15,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDaoImpl dao;
 
-	//01.회원 전체 조회
+	//01.회원목록 조회
 	@Override
 	public List<MemberDto> memberList() {
 		return dao.memberList();
@@ -26,10 +26,5 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDto viewMember(String user_id) {
 		return dao.viewMember(user_id);
 	}
-	
-	
-	/*
-	 * @Override public List<MemberDto> getUserList(){ return userDao.getUserList();
-	 * }
-	 */
 }
+
