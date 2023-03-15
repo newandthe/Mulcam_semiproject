@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+<!-- 01.회원목록 -->
+<select id="memberList" resultType="a.dto.MemberDto">
+	select
+		user_id, 
+		username, 
+		nickname ,
+		email ,
+		reg_date,
+		auth
+		from Member2
+		order by user_id
+</select>
+
+<!-- 02.회원등록 -->
+<insert id="insertMember">
+	insert into Member2
+		(user_id, pwd, username)
+	values
+		(#{user_id}, #{pwd}, #{username})
+</insert>
+
+<!-- 03.회원정보 상세조회 -->
+<select id="viewMember" resultType="a.dto.MemberDto">
+	select
+		user_id ,
+		username,
+		nickname ,
+		email,
+		reg_date,
+		modify_date,
+		auth
+	from Member2
+	where user_id = #{user_id}
+</select>
+
+<!-- 다윤님 -->
+<select id="seqcheck" parameterType="String" resultType="Integer">
+	select count(*)
+	from member2
+	where user_id= #{user_id}
+</select>
+
+<select id="nicknamecheck" parameterType="String" resultType="Integer">
+	select count(*)
+	from member2
+	where user_id= #{user_id}
+</select>
+
+<insert id="addmember" parameterType="a.dto.MemberDto"> <!-- insertMember -->
+	insert into member2(user_id, username, pwd, email, nickname, img_path, reg_date, modify_date, auth)
+	values(#{user_id}, #{username}, #{pwd}, #{email}, #{nickname}, #{img_path}, now(), now(), 1)
+</insert>
+
+<!-- 회원 정보 불러오기 -->
+<!-- <select id="getUserInfo" resultType="a.dto.MemberDto">
+	select user_id, username, pwd, email, reg_date, auth
+	from Member2
+	where user_id = ${user_id}
+</select> -->
+
+<!--  <select id="getUserList" resultType="a.dto.MemberDto">
+	select user_id, username, pwd, email, reg_date, auth
+	from Member2
+</select>   -->
+	
+	<!-- <select id="readMember" resultType="a.dto.MemberDto">
+		select *
+		from Member2
+		where user_id=#{user_id}
+	</select>
+	
+	<select id="readMemberWithIDPW" resultType="com.itwillbs.domain.MemberVO">
+		select *
+		from Member2
+		where user_id=#{user_id} and pwd=#{pwd}
+	</select>	
+	
+	<update id="updateMember">
+		update Member2 set username=#{username}, email=#{email}, modify_date=now()
+		where user_id=#{user_id} and pwd=#{pwd}
+	</update>
+	
+	<delete id="deleteMember">
+		delete from Member2 where user_id=#{user_id} and pwd=#{pwd}
+	</delete> -->
+
+</mapper> 
+
