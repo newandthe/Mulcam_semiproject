@@ -91,7 +91,6 @@ MemberDto dto = list.get(i);
 	</tr>
 </table> 
 </div>
-
 </div>
 </body>
 </html>

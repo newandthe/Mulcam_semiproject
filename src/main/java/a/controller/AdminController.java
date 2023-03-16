@@ -104,5 +104,4 @@ public class AdminController {
 		
 		return "admin/freepostList";
 	}
-
 }

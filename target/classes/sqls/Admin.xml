@@ -40,9 +40,6 @@
 </select>
 
 <!-- 01.게시글목록 -->
-<!-- ref - 그룹컬럼
-step - 순번컬럼
-depth - 깊이(들여쓰기)컬럼 -->
 <select id="bbsList" parameterType="a.dto.BbsParam"
 	resultType="a.dto.FreePostDto">
 	select

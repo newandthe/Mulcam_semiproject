@@ -22,6 +22,4 @@ public interface AdminDao {
 	//게시글 목록 조회
 	List<FreePostDto> bbsList(BbsParam bbs);
 	int getAllBbs(BbsParam bbs);
-
-
 }

@@ -41,6 +41,4 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectOne("admin.getAllBbs", bbs);
 	}
 
-	
-
 }
