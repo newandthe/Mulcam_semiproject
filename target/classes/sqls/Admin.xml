@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+<!-- 01.회원목록 -->
+<select id="memberList"
+	resultType="a.dto.MemberDto">
+	select
+		user_id, 
+		username, 
+		nickname ,
+		email ,
+		reg_date,
+		auth
+		from Member2
+</select>
+
+<!-- 02.회원등록 -->
+<insert id="insertMember">
+	insert into Member2
+		(user_id, pwd, username)
+	values
+		(#{user_id}, #{pwd}, #{username})
+</insert>
+
+<!-- 03.회원정보 상세조회 -->
+<select id="viewMember" resultType="a.dto.MemberDto">
+	select
+		user_id ,
+		username,
+		nickname ,
+		email,
+		reg_date,
+		modify_date,
+		auth
+	from Member2
+	where user_id = #{user_id}
+</select>
+
+<!-- 01.게시글목록 -->
+<!-- ref - 그룹컬럼
+step - 순번컬럼
+depth - 깊이(들여쓰기)컬럼 -->
+<select id="bbsList" parameterType="a.dto.BbsParam"
+	resultType="a.dto.FreePostDto">
+	select
+		bbs_seq,
+		user_id,
+		title,
+		readcount,
+		likecount,
+		cmtcount,
+		wdate,
+		depth
+			from FreePost
+			where 1=1
+			<if test="choice != null and choice != '' and search != null and search != '' ">
+			 	<if test="choice == 'title'">
+			 		and title like concat('%', #{search}, '%') and del=0
+			 	</if>
+			 	<if test="choice == 'writer'">
+			 		and id=#{search} and del=0
+			 	</if>
+			 </if>	
+</select>
+
+<select id="getAllBbs" parameterType="a.dto.BbsParam" resultType="java.lang.Integer">
+	select ifnull(count(*),0)
+	from FreePost
+	<if test="choice != null and choice != '' and search != null and search != '' ">
+	 	<if test="choice == 'title'">
+	 		where title like concat('%', #{search}, '%') and del=0
+	 	</if>
+	 	<if test="choice == 'writer'">
+	 		where id=#{search} and del=0
+	 	</if>
+	 </if>
+</select>
+
+</mapper>

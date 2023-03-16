@@ -13,6 +13,13 @@
       </bean>
       <context:component-scan base-package="a" />
       
+      <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/"/> <!-- 모든 요청에 대해 인터셉터를 적용 -->
+        <bean class="a.interceptor.AdminInterceptor"/> <!-- 인터셉터 클래스 등록 -->
+        </mvc:interceptor>
+    </mvc:interceptors>
+            
       <!-- ajax 사용 -->
       <mvc:annotation-driven />
       

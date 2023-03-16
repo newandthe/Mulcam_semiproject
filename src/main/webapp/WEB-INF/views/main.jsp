@@ -56,7 +56,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#admin_login.do" style="font-family: 'Lobster', cursive">admin page</a>
+          <a class="nav-link" href="admin/adminview.do" style="font-family: 'Lobster', cursive">admin page</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" style="font-family: 'Lobster', cursive">login</a>
@@ -68,7 +68,7 @@
 </div>
 </nav>
 
-footer
+<!-- footer -->
 <footer class="bg-light text-center text-white">
   Grid container
   <div class="container p-4 pb-0">
