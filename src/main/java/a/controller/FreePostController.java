@@ -221,7 +221,15 @@ public class FreePostController {
 	}
 	
 
-    
+	@GetMapping(value="main.do")
+	public String getMainBbs(Model model) {
+		List<FreePostDto> bbslist = freePostService.getMainBbs();
+		model.addAttribute("bbslist", bbslist);
+		
+		System.out.println("FreePostController getMainBbs() " + bbslist.toString());
+		
+		return "main";
+	}
     
     
     

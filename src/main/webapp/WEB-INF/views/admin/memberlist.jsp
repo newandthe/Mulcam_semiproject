@@ -34,24 +34,25 @@
     String choice = (String)request.getAttribute("choice");
     String search = (String)request.getAttribute("search");
 %>
-
+<br>
+<div style="text-align:center;">
 <h2>회원 목록</h2>
-<div align="center">
-    <table class="table table-hover table-sm" style="width: 1000px">
-        <col width="70">
-        <col width="200">
+</div>
+
+<div align="center" class="panel panel-default">
+    <table class="table table-hover" style="width: 1300px; background-color: #f1f1f1;">
         <col width="100">
         <col width="150">
         <col width="150">
-        <col width="200">
         <col width="150">
+        <col width="100">
         <tr class="bg-primary" style="color: white;">
             <th>번호</th>
             <th>아이디</th>
             <th>이름</th>
             <th>닉네임</th>
-            <th>이메일</th>
-            <th>가입일</th>
+<!--             <th>이메일</th> -->
+<!--             <th>가입일</th> -->
             <th>권한</th>
         </tr>
         <tbody>
@@ -59,7 +60,7 @@
 	if(list == null || list.size() == 0){
 		%>
 	<tr>
-		<td colspan="7">작성된 글이 없습니다</td>
+		<td colspan="5" style="text-align:center;">등록된 회원이 없습니다.</td>
 	</tr>
         <%
 	}else{
@@ -75,10 +76,6 @@
             <td><%=dto.getUsername() %>
             </td>
             <td><%=dto.getNickname() %>
-            </td>
-            <td><%=dto.getEmail() %>
-            </td>
-            <td><%=dto.getReg_date() %>
             </td>
             <td><%=dto.getAuth() %>
             </td>
@@ -120,16 +117,16 @@
     </form>
 </div>
 <div class="paging">
-	<c:if test="${not empty search}">
-		<c:set var="searchParam" value="&search=${search}"/>
-	</c:if>
-	<c:if test="${not empty choice}">
-		<c:set var="choiceParam" value="&choice=${choice}"/>
-	</c:if>
+    <c:if test="${not empty search}">
+        <c:set var="searchParam" value="&search=${search}"/>
+    </c:if>
+    <c:if test="${not empty choice}">
+        <c:set var="choiceParam" value="&choice=${choice}"/>
+    </c:if>
 
     <!-- 이전 버튼 -->
     <c:if test="${dto.hasPreviousPage}">
-        <a href="${pageContext.request.contextPath}/admin/memberlist.do?page=${dto.prePage}${searchParam}${choiceParam}">이전</a>
+        <a href="${pageContext.request.contextPath}/admin/memberlist.do?page=${dto.previousPage}${searchParam}${choiceParam}">이전</a>
     </c:if>
 
     <!-- 페이지 번호 -->
@@ -143,11 +140,11 @@
             </c:otherwise>
         </c:choose>
     </c:forEach>
+
     <!-- 다음 버튼 -->
     <c:if test="${dto.hasNextPage}">
         <a href="${pageContext.request.contextPath}/admin/memberlist.do?page=${dto.nextPage}${searchParam}${choiceParam}">다음</a>
     </c:if>
 </div>
-
 </body>
 </html>

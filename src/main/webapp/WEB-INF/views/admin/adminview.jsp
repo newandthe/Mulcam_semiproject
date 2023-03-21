@@ -6,29 +6,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-        <link rel="stylesheet" href="../resources/css/admin-main.css">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>관리자 페이지</h1>
+    <title>관리자 페이지</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      /* Add your CSS styles here */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+      }
 
+      h1 {
+        text-align: center;
+        margin-top: 30px;
+        color: #333;
+      }
 
-<!-- 관리자일때만 확인 가능 ***추후 수정 필요***-->
-<%-- <c:if test="${loginUser!=null || loginUser.auth() ==2}"> --%>
-    <a href="memberlist.do">회원 관리</a><br><br>
-    <a>게시판 관리</a><br><br>
-    <li><a href="freepostList.do">자유게시판 관리</a></li><br>
-    <li><a href="">Q&A 관리</a></li><br><br>
-    <a>댓글 관리</a><br><br>
-    <li><a href="commentList.do">자유게시판 댓글 관리</a></li><br>
-    <li><a href="">Q&A 댓글 관리</a></li><br><br>
-<%-- </c:if> --%>
-</body>
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px #ccc;
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      a {
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+        background-color: #f1f1f1;
+        transition: background-color 0.2s;
+      }
+
+      a:hover {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+<%
+MemberDto member = (MemberDto)session.getAttribute("login"); 
+%>
+    <h1>관리자 페이지</h1>
+    <div class="container">
+    <div style="text-align: right;"><%=member.getUser_id()%>님 안녕하세요. 권한 : <%=member.getAuth()%></div>
+      <div style="text-align: center; margin-top: 20px;">
+      <ul>
+       	  <a href="memberlist.do">회원 관리</a>
+      </ul>
+      <ul>
+          <a href="freepostList.do">자유게시판 관리</a>
+      </ul>
+      <ul>
+         <a href="commentList.do">자유게시판 댓글 관리</a>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
+
+
+
+
+      

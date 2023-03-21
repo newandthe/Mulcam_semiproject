@@ -34,9 +34,13 @@
     String search = (String)request.getAttribute("search");
 %>
 
-<h2>게시판 댓글 - 자유게시판</h2>
+<br>
+<div style="text-align:center;">
+<h2>게시판 관리</h2>
+</div>
+
 <div align="center">
-<table class="table table-hover table-sm" style="width: 1300px">
+<table class="table table-hover table-sm" style="width: 1300px; background-color: #f1f1f1;">
 <col width="70"><col width="100"><col width="100"><col width="150"><col width="70">
 <col width="70"><col width="100"><col width="300"><col width="300">
 <tr class="bg-primary" style="color: white;">
@@ -66,20 +70,22 @@ if(list == null || list.size() == 0){
 	<tr>			
 		<th><%=i + 1 %></th>
 		<td><%=dto.getBbs_seq() %></td>
-		<td><%=dto.getuser_id() %></a></td>
+		<td><a href="memberview.do?user_id=<%=dto.getuser_id() %>"><%=dto.getuser_id() %></a></td>
 		 <%
                 if(dto.isDel() == 0){
                     %>
 		<td>
-			<a href="bbsdetail.do?bbs_seq=<%=dto.getBbs_seq() %>">
+			<a href="bbsdetail2.do?bbs_seq=<%=dto.getBbs_seq() %>">
 				<%=dto.getTitle() %>
 			</a>
 		</td>
 		<%
                }else if(dto.isDel() == 1){
                     %>
-              <td>
-                  <font color="#ff0000">*** 이 글은 관리자에의해 삭제되었습니다 ***</font>    
+              <td><a href="bbsdetail2.do?bbs_seq=<%=dto.getBbs_seq() %>">
+                  <font color="#ff0000">*** *** 이 글은 작성자 또는 관리자에 의해 삭제되었습니다 *** ***</font>  
+                  <a href="bbsdetail2.do?bbs_seq=<%=dto.getBbs_seq() %>">
+			</a>  
               </td>
                <%
                 }   
@@ -165,6 +171,15 @@ if(list == null || list.size() == 0){
         <a href="${pageContext.request.contextPath}/admin/freepostList.do?page=${dto.nextPage}${searchParam}${choiceParam}">다음</a>
     </c:if>
 </div>
+
+<script type="text/javascript">
+$(document).on('click', 'a', function(e) {
+  e.preventDefault();
+  
+  const url = $(this).attr('href');
+  location.href = url;
+});
+</script>
 
 </body>
 </html>

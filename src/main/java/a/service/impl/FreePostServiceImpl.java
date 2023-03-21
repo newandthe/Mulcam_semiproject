@@ -87,7 +87,10 @@ public class FreePostServiceImpl {
     }
 
 
-
+    public List<FreePostDto> getMainBbs(){
+    	List<FreePostDto> list = freePostDAO.getMainBbs();
+    	return list;
+    }
 
     
 

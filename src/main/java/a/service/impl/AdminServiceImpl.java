@@ -13,6 +13,7 @@ import a.dao.AdminDao;
 import a.dao.MemberDao;
 import a.dao.impl.AdminDaoImpl;
 import a.dto.BbsParam;
+import a.dto.FpdImgDto;
 import a.dto.FreeCommentVO;
 import a.dto.FreePostDto;
 import a.dto.MemberDto;
@@ -43,6 +44,11 @@ public class AdminServiceImpl implements AdminService {
 	public MemberDto viewMember(String user_id) {
 		return dao.viewMember(user_id);
 	}
+	
+	@Override
+	public void deleteUser(String userId) {
+		 dao.deleteUser(userId);
+	}
 
 	//게시글 목록 조회
 	@Override
@@ -54,17 +60,6 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public PageInfo<FreePostDto> searchByFreePostList(String keyword, String choice){
 		return dao.searchByFreePostList(keyword, choice);
-	}
-
-//	@Override
-//	public int getAllBbs(BbsParam bbs) {
-//		return dao.getAllBbs(bbs);
-//	}
-
-	//게시글 bbs_seq가져오기
-	@Override
-	public FreePostDto getBbs(int bbs_seq) {
-		return dao.getBbs(bbs_seq);
 	}
 
 	//자유게시판 댓글 목록 - 조회
@@ -79,5 +74,10 @@ public class AdminServiceImpl implements AdminService {
 		return dao.searchByFreeCommentList(keyword, choice);
 	}
 
+	@Override
+	public void deleteComment(List<Long> commentId) {
+		dao.deleteComment(commentId);
+		
+	}	
 }
 

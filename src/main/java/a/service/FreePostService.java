@@ -15,4 +15,6 @@ public interface FreePostService {
 	
 	FreePostDto getBbs(int seq);
 	
+	List<FreePostDto> getMainBbs();
+	
 }

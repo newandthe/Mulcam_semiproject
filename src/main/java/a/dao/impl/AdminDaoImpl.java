@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import a.dao.AdminDao;
 import a.dao.MemberDao;
 import a.dto.BbsParam;
+import a.dto.FpdImgDto;
 import a.dto.FreeCommentVO;
 import a.dto.FreePostDto;
 import a.dto.MemberDto;
@@ -22,8 +23,6 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Autowired
 	SqlSession sqlSession;
-	
-	//로그인한 회원이 관리자인지 확인 -> 추후 수정
 
 	//회원 목록 - 조회
 	@Override
@@ -46,6 +45,11 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.selectOne("admin.viewMember",user_id);
 	}
 	
+	@Override
+	public void deleteUser(String userId) {
+		sqlSession.update("admin.delete",userId);
+	}
+	
 	//자유게시판 목록 조회
 	@Override
 	public List<FreePostDto> bbsList() {
@@ -62,17 +66,6 @@ public class AdminDaoImpl implements AdminDao {
 		return PageInfo.of(sqlSession.selectList("admin.searchByFreePostList", parameters));
 	}
 
-//	@Override
-//	public int getAllBbs(BbsParam bbs) {
-//		return sqlSession.selectOne("admin.getAllBbs", bbs);
-//	}
-
-	//게시글 bbs_seq가져오기
-	@Override
-	public FreePostDto getBbs(int bbs_seq) {
-		return sqlSession.selectOne("admin.getBbs",bbs_seq);
-	}
-	
 	//자유게시판 댓글 목록
 	@Override
 	public List<FreeCommentVO> getComment() {
@@ -88,4 +81,13 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return PageInfo.of(sqlSession.selectList("admin.searchByFreeCommentList",parameters));
 	}
+
+	@Override
+	public void deleteComment(List<Long> commentIds) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("commentIds", commentIds);
+		sqlSession.update("admin.deleteComment", parameters);
+		
+	}
+
 }
