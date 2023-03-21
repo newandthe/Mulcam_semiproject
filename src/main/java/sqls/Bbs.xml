@@ -49,19 +49,9 @@
 	    values (#{user_id}, #{title}, #{content}, now())
 	</insert>
 		
-		
-
 	<insert id="multiimg" parameterType="a.dto.BbsImgVO">
 	    INSERT INTO multiimg (img_name, img_path, img_type)
 	    VALUES (#{img_name}, #{img_path}, #{img_type})
-	</insert>
-		
-	<insert id="img_rel2">
-		    INSERT INTO img_rel (bbs_seq, img_seq)
-		    VALUES (
-		        (SELECT MAX(bbs_seq) FROM FreePost),
-		        LAST_INSERT_ID()
-		    )
 	</insert>
 	
 	<insert id="img_rel" parameterType="int">
@@ -123,7 +113,7 @@
 		WHERE bbs_seq = #{bbs_seq}
 	</update>
 	
-	<select id="getWitor" parameterType="int" resultType="a.dto.MemberDto">
+<select id="getWitor" parameterType="int" resultType="a.dto.MemberDto">
 		SELECT m.*
 		FROM Member2 m
 		JOIN FreePost f ON m.user_id = f.user_id
@@ -138,6 +128,7 @@
 		WHERE fp.bbs_seq = #{bbs_seq}
 		ORDER BY fc.comment_seq ASC
 	</select>
+	
 	<!-- 
 	<select id="getlikecount" parameterType="a.dto.LikePostDto">
 		select *
@@ -153,5 +144,10 @@
 	  WHERE fp.bbs_seq = #{bbs_seq}
 	</select>  -->
 
-
+<!-- 메인화면에 좋아요 수 5개 뿌리기 -->
+<select id="getMainBbs" resultType="a.dto.FreePostDto">
+	select *
+	from FreePost
+	order by likecount desc limit 5;
+</select>
 </mapper>
